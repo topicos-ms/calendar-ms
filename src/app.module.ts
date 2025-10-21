@@ -7,7 +7,6 @@ import { AcademicYearsModule } from './academic-years/academic-years.module';
 import { TermsModule } from './terms/terms.module';
 import { envs } from './config/envs';
 import { EventPublisherInterceptor, EVENT_EMITTER } from './common/events/event-publisher.interceptor';
-import { HealthController } from './common/health.controller';
 
 @Module({
   imports: [
@@ -31,7 +30,7 @@ import { HealthController } from './common/health.controller';
     AcademicYearsModule,
     TermsModule,
   ],
-  controllers: [HealthController],
+  controllers: [],
   providers: [EventPublisherInterceptor],
   exports: [EventPublisherInterceptor],
 })
