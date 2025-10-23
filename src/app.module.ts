@@ -7,6 +7,9 @@ import { AcademicYearsModule } from './academic-years/academic-years.module';
 import { TermsModule } from './terms/terms.module';
 import { envs } from './config/envs';
 import { EventPublisherInterceptor, EVENT_EMITTER } from './common/events/event-publisher.interceptor';
+import { AcademicYear } from './academic-years/entities/academic-year.entity';
+import { Term } from './terms/entities/term.entity';
+import { SeedingController } from './seeding.controller';
 
 @Module({
   imports: [
@@ -18,6 +21,7 @@ import { EventPublisherInterceptor, EVENT_EMITTER } from './common/events/event-
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => typeOrmConfig(configService),
     }),
+    TypeOrmModule.forFeature([AcademicYear, Term]),
     ClientsModule.register([
       {
         name: EVENT_EMITTER,
@@ -30,7 +34,7 @@ import { EventPublisherInterceptor, EVENT_EMITTER } from './common/events/event-
     AcademicYearsModule,
     TermsModule,
   ],
-  controllers: [],
+  controllers: [SeedingController],
   providers: [EventPublisherInterceptor],
   exports: [EventPublisherInterceptor],
 })
